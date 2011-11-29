@@ -1,17 +1,14 @@
 #include "FileDirectory.h"
 
-static FileInfo* file_table[MAX_FILES];
+static file_info* file_table[MAX_FILES];
 
 file_directory* f_dir_init(char* dir_name) {
- 
 	struct file_directory* fdp;
-
 	int i;
 
 	for(i=0; i<MAX_FILES; i++) file_table[i] = NULL;
 	
 	struct file_directory fd = { dir_name, file_table };
-
 	fp = &fd;
 	return fp;
 }
