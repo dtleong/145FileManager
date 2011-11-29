@@ -28,4 +28,4 @@ int f_create(struct file_directory* fd, char* filename);
 int f_delete(struct file_directory* fd, char* filename);
 
 /* Append a byte to the end of a file */
-int f_append_byte(struct file_directory* fd, int file_handle, 
+int f_append_byte(struct file_directory* fd, int file_handle, int byte); 
