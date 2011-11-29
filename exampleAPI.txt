@@ -1,0 +1,10 @@
+
+/*  API for xxx_function
+	purpose: Create a new widget
+	parameters: widgetpointer,attribute
+	input preconditions: widget has been allocated and widgetpointer points to it.  Attribute is in { a b c }
+	output/postconditions: widget now has attribute assigned
+        usage: int w_create(struct widget* w, char* attr)
+	Principal designer: JRR
+	Status: Designed, documented, implemented and tested 
+*/
