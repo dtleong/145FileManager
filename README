@@ -1,0 +1,111 @@
+Simple File Manager
+
+In this programming assignment, you will create a user-space file manager. We will make these simplifying assumptions in designing and implementing the file manager.
+
+- The on-disk file descriptor will fit into one disk block. The on-disk file descriptor need contain only minimal information: 1) a filename of six or fewer characters and (2) at most four disk blocks per file (you can use 2-byte block addresses).
+
+- The disk blocks will be very small, say 128 bytes per block. You will define this parameter as a global constant or define.
+
+- Directories need contain only minimal information describing the file, just enough to get the file manager working.
+
+Remember: this is a SIMPLE file manager!
+
+- Do not implement file sharing, no locks.
+
+- Do not implement file modes such as read, write or execute.
+
+- Do not include any protection or authentication.
+
+- Do not implement path names: just filenames within the current directory.
+
+- Do not implement buffering.
+
+
+
+Part A
+
+The file manager is required to implement the following API: 
+
+int fLs();
+
+int fOpen(char *name);
+
+int fClose(int fileID);
+
+int fRead(int fileID, char *buffer, int length);
+
+int fSeek(int fileID, int position);
+
+Generally, fOpen(), fClose(), fRead() and fSeek() functions should behave like the UNIX kernel functions open(), close(), read() and lseek(), respectively, except with behavior that is simplified by the assumptions. For example, fOpen() does not have a flag parameter, so your function should operate as if O_RDWR | O_CREAT were use in the kernel function equivalent. The fLs() functionshould print all the information your system knows about the file, then return -1 if you detect an error and 0 otherwise.
+
+Use the following disk interface:
+
+#define NUM_BLOCKS 100
+
+#define BLOCK_SIZE 128
+
+void initDisk();
+
+int dRead(int addr, char *buf);
+
+You may also add a few more routines to the API , for example, if you wish to initialize the file manager prior to using it the first time. Although it is not necessary, you can add a fcntl/ioctl command if you need one.
+
+Part B
+
+The file manager is required to implement the following API:
+
+int fMkdir(char *name);
+
+int fCd(char *name);
+
+int fWrite(int fileID, char *buffer, int length);
+
+Generally, fWrite() functions should behave like the UNIX kernel write() function, except with behavior that is simplified by the assumptions. It returns the number of bytes actually written by the function call. The fMkdir() function should create the named directory, then return -1 if you detect an error and 0 otherwise. The fCd() function should change the current directory to the named directory if it exists, then return -1 if you detect an error and 0 otherwise.
+
+Part C
+
+Write a program that tests each function and feature (such as subdirectories).
+
+You will work together.  You will mutually determine responsibilities and ensure that the interfaces are adequately described. Everyone will be expected to contribute substantially to the effort.
+
+Background:
+
+Much of the design of your file manager is straightforward. However, this section provides useful applied information about how to organize the file system.
+
+Disk Layout
+
+The storage device, “the disk", provides a basic format for the way files wil be stored on the disk. When a disk is formatted, it is prepared so that certain fixed locations will contain information expected by a particular file manager. Formatting a disk for one OS does not necessarily mean that it will be formatted for others. You will need to define your own format for your simulated disk.
+
+File Descriptors
+
+The file descriptor is simply a data structure: Its design is determined by the file manager designer at the time the file manager algorithms are designed. If you have Linux source code available, you can look at struct inode in the file name /usr/src/linux/ include/linux/fs.h for the exact definition of Linux inodes. (You may also find it helpful to see Beck et al. [1998, ch. 6].)
+
+When the file manager loads the external file descriptor into primary memory, it copies all the information from the disk representation, and then adds other information that it needs to manage the open file. For example, the external version of the file descriptors does not indicate which user and process currently has the file open or what the current location is for the file pointer; this information makes sense only for an open file.
+
+The example in Section 13.3 describes the UNIX data structures to handle open files. To summarize: When the file is opened, the file manager looks up the file in the directory to obtain the inode. The inode is copied into a memory-resident set of inodes. The file manager then creates an entry in the file table that will contain new dynamic information needed by the process when the file is open (see the struct file definition in /usr/src/linux/include/linux/fs.h). The file table entry references the inode. Finally, the file manager creates an entry in the process's file descriptor table; this entry establishes the “file identification number" returned by the open command and points to the file table entry.
+
+ 
+
+This virtual disk is very simple. It statically allocates 100 blocks of 50 bytes each, then reads and writes those with the possibility of I/O failure. Use this code to implement your own virtual disk; change the block size as needed. You can also experiment with different reliability values if you like.
+
+ 
+
+Solution Plan
+
+The disk simulation code simply initializes a set of blocks but does not format the disk. The first step in your solution should be to design your low-level disk format (of course, you need not provide a bootstrap area, but you may need to have information regarding the disk layout, and you will certainly need information regarding the root directory). If you use a version of inodes, you will need to decide how this should be laid out on your disk.
+
+The next step is to design your directories. A directory entry need not be complex - it should have just enough information to allow you to associate a name and a file descriptor. After you have designed the directory entry, you can implement the root directory. You may wish to postpone adding subdirectories until you get more of the solution working properly.
+
+At this point you will almost certainly find it worthwhile to build a tool that creates a simple file system with a root directory and a few files. You will also find it worthwhile to build a tool that dumps the virtual disk contents so you can analyze it as you design and debug the rest of the system.
+
+After your directory is designed and your root directory is implemented, you should implement your first version of the fls() command - a version that works only on the file system root directory. After you have implemented subdirectories, you can finish implementing fls().
+
+Now you are ready to design and implement the file descriptor and the open-file data structure(s). You may find it easiest to use either a FAT-style approach or an inode approach using only direct pointers to the data blocks.
+
+You should now be ready to implement the commands on the API. It will be easier to get the whole system working if you first design and implement the directory commands - only those that read the directory but do not change it, followed by commands that write the directory (such as opening a new file).
+
+After you have finished this phase, you can implement file operations - commands that open/close and read/write a file. Again, first implement commands that do not write the directory entries or file descriptors (for example, fRead()).
+
+After you get this code working, you could implement a fWrite(), which would require you to do block allocation.
+
+The final step is to implement subdirectories. In theory, all your previous code should work just with subdirectories, although in practice you will probably find some errors in your original code. Last, you should implement fmkdir()
