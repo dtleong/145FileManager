@@ -43,4 +43,9 @@ int f_delete(struct file_directory* fd, char* filename){
 /* Append a byte to the end of a file */
 int f_append_byte(struct file_directory* fd, int file_handle, int byte){
 
+}
+
+/* Append a string to the end of a file */
+int f_append_string(struct file_directory* fd, int file_handle, char* string){
+
 } 
