@@ -17,7 +17,7 @@ file_directory* f_dir_init(char* dir_name) {
 }
 
 int f_mk_fs(struct file_directory* fd, char* filename) {
-/* This is where fcbs are initia;ized */
+/* This is where fcbs are initialized */
 }
 
 /* Open a file */
@@ -39,4 +39,8 @@ int f_create(struct file_directory* fd, char* filename){
 int f_delete(struct file_directory* fd, char* filename){
 
 }
- 
+
+/* Append a byte to the end of a file */
+int f_append_byte(struct file_directory* fd, int file_handle, int byte){
+
+} 
