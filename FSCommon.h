@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 
 #define MAX_BYTES 128
 #define MAX_BLOCKS 4
