@@ -1,3 +1,4 @@
+#include "FSCommon.h"
 #include "DataBlock.h"
 
 static char *bList[MAX_BYTES];
