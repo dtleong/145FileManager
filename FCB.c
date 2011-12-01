@@ -6,8 +6,9 @@ struct file_control_block* init_fcb() {
 
 	for(i=0; i<MAX_BLOCKS; i++) bList[i] = NULL;
 	
-	struct file_control_block* fcb = {bList};
-	return fcb;
+	struct file_control_block fcb = {bList};
+	struct file_control_block* fcbp = &fcb;
+	return fcbp;
 }
 
 

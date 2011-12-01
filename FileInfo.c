@@ -1,24 +1,34 @@
 #include "FileInfo.h"
+#include <string.h>
 
 
-struct file_info* initFileInfo() {
+/*  API for init_file_info()
+        purpose: Create a new file_info
+        parameters: [char* filename]
+        input preconditions: NONE
+        output/postconditions: [struct file_info* fi] A pointer to the new file_info struct is returned.
+        usage: struct file_info* init_file_info(char* filename)
+        Principal designer: mvigil
+        Status: Designed, documented, implemented
+*/
 
-	char* name;
+struct file_info* init_file_info(char *name) {
+
 	time_t created;
 	time_t modified;
-	struct data_block* db;
+	char fname[NAME_SIZE];
+	struct file_control_block* fcb;
 
 	int i;
 
-
-
-	for(i=0; i<NAME_SIZE; i++) name[i] = NULL;
-
-	for(i=0; i<MAX_BLOCKS; i++) db[i] = NULL;
 	created = time(NULL);
 	modified = time(NULL);
+	strcpy(fname,name);
 
-	struct file_info* fi = {created, modified, name, db}
-	return fi;
+	fcb=init_fcb();
+
+	struct file_info fi = {created, modified, fname, fcb};
+        struct file_info* fip=&fi;
+	return fip;
 }
 

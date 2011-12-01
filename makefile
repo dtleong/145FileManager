@@ -14,4 +14,4 @@ FileDirectory.o: FileDirectory.c FileDirectory.h FSCommon.h
 FileInfo.o: FileInfo.c FileInfo.h FSCommon.h
 	cc -c FileInfo.c
 FSHarness.o: FSHarness.c FSCommon.h
-	cc -c FSHarness1.c
+	cc -c FSHarness.c

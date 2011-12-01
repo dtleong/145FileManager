@@ -16,7 +16,7 @@ int i;
 
  
 
-for(i=0; i<NUM_BLOCKS; i++) bList[i] = NULL;
+for(i=0; i<NUM_BLOCKS; i++) bList[i] = D_NULL;
 
 threshold = (int) (RELIABILITY*PERIOD);
 
@@ -38,7 +38,7 @@ if(addr >= NUM_BLOCKS) return ERROR;
 
 if(rand() > threshold) return ERROR;
 
-if(bList[addr] != NULL) {
+if(bList[addr] != D_NULL) {
 
 bufPtr = bList[addr];
 
@@ -68,7 +68,7 @@ if(addr >= NUM_BLOCKS) return ERROR;
 
 if(rand() > threshold) return ERROR;
 
-if(bList[addr] == NULL)
+if(bList[addr] == D_NULL)
 
 bList[addr] = (char *)malloc(BLOCK_SIZE);
 

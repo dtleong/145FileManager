@@ -77,3 +77,25 @@ int f_append_byte(struct file_directory* fd, int file_handle, int byte);
         Status: Designed, documented
 */
 int f_append_string(struct file_directory* fd, int file_handle, char* string);
+
+/*  API for f_ls()
+        purpose: show list of all files in a directory
+        parameters: [struct file_directory* fd]
+        input preconditions: File directory is not null
+        output/postconditions: side effect - output to screen of 'ls' info
+        usage: void f_ls(struct file_directory* fd)
+        Principal designer: mvigil
+        Status: Designed, documented
+*/
+void f_ls(struct file_directory* fd);
+
+/*  API for f_ls1()
+        purpose: show list of a file in a directory
+        parameters: [struct file_directory* fd]
+        input preconditions: File directory is not null
+        output/postconditions: side effect - output to screen of 'ls' info
+        usage: void f_ls(struct file_directory* fd)
+        Principal designer: mvigil
+        Status: Designed, documented
+*/
+void f_ls1(struct file_directory* fd,char* fname);

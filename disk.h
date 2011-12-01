@@ -14,7 +14,7 @@
 
 #define NO_ERROR	 1
 
-#define NULL	 0
+#define D_NULL	 0
 
  
 
