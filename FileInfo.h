@@ -1,6 +1,5 @@
 #include "FSCommon.h"
 #include <time.h>
-#include <stdio.h>
 
 /*  API for init_file_info()
         purpose: Create a new file_info
