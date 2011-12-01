@@ -11,13 +11,18 @@ struct data_block {
 	char* data[MAX_BYTES];
 };
 
+/* A file_control_block defintion */
+struct file_control_block {
+	struct data_block* db[MAX_BLOCKS]
+};
+
 /* A file_info struct definition */
 struct file_info {
 
         time_t created;
         time_t last_modified;
         char* file_name;
-	struct data_block* blocks[MAX_BLOCKS];
+	struct file_control_block* fcb;
 
 };
 
