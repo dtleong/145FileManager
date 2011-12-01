@@ -1,3 +1,4 @@
+#include "FSCommon.h"
 #include "DataBlock.h"
 
-void initFCB();
+struct file_control_block* init_fcb();
