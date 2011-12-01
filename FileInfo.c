@@ -20,5 +20,6 @@ struct file_info* initFileInfo() {
 	modified = time(NULL);
 
 	struct file_info* fi = {created, modified, name, db}
+	return fi;
 }
 
