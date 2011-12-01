@@ -1,6 +1,6 @@
 #include "FCB.h"
 
-struct file_control_block* initFCB(){
+struct file_control_block* init_fcb() {
 	struct data_block* bList[MAX_BLOCKS];
 	int i;
 
