@@ -1,5 +1,4 @@
 #include "FSCommon.h"
-#include <stdio.h>
 
 /*  API for f_dir_init()
         purpose: Initialize a new directory

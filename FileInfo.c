@@ -1,5 +1,4 @@
 #include "FileInfo.h"
-#include <stdio.h>
 
 
 struct file_info* initFileInfo() {
