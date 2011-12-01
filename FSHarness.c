@@ -13,7 +13,7 @@ int main() {
 		handle[i] = NULL;
 	}
 	
-	FileDirectory *fdir;
+	struct file_directory *fdir;
 	fdir = f_dir_init("myblock.txt");
 	
 	/* Make and delete files */
@@ -21,18 +21,18 @@ int main() {
 		char *value = sprintf("foo %d", i);
 		
 		/* Will need error handling here */
-		handle[i] = create(&fdir, value);
+		handle[i] = f_create(&fdir, value);
 		
 		/* File has 1-4 DataBlocks associated with it */
 		for (int j = 0; j < (128 * (4 * rand() % 1)); j++) {
-			append_byte(%fdir, handle[i], i);
+			f_append_byte(%fdir, handle[i], i);
 		}
 	}
 	
 	/* Delete some files */
 	f_delete(&f_dir,handle[3]);
 	f_delete(&f_dir,handle[7]);
-	append_string(handle[5], "hello, world!\n");
+	f_append_string(handle[5], "hello, world!\n");
 	
 	f_ls();
 	f_ls("foo5");
