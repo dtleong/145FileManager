@@ -8,7 +8,7 @@ In this programming assignment, you will create a user-space file manager. We wi
 
 - Directories need contain only minimal information describing the file, just enough to get the file manager working.
 
-Remember: this is a SIMPLE file manager!
+ Remember: this is a SIMPLE file manager!
 
 - Do not implement file sharing, no locks.
 
@@ -102,7 +102,7 @@ After your directory is designed and your root directory is implemented, you sho
 
 Now you are ready to design and implement the file descriptor and the open-file data structure(s). You may find it easiest to use either a FAT-style approach or an inode approach using only direct pointers to the data blocks.
 
-You should now be ready to implement the commands on the API. It will be easier to get the whole system working if you first design and implement the directory commands - only those that read the directory but do not change it, followed by commands that write the directory (such as opening a new file).
+You should now be ready to implement the commands on the API. It'll be easier to get the whole system working if you first design and implement the directory commands - only those that read the directory but do not change it, followed by commands that write the directory (such as opening a new file).
 
 After you have finished this phase, you can implement file operations - commands that open/close and read/write a file. Again, first implement commands that do not write the directory entries or file descriptors (for example, fRead()).
 
