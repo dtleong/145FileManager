@@ -13,7 +13,7 @@ struct data_block {
 
 /* A file_control_block defintion */
 struct file_control_block {
-	struct data_block* db[MAX_BLOCKS]
+	struct data_block* db[MAX_BLOCKS];
 };
 
 /* A file_info struct definition */

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "disk.h"
 #include "FileDirectory.h"
 
