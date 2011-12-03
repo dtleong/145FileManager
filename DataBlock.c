@@ -12,12 +12,12 @@
 	Status: Designed, documented, implemented
 */
 
-/*  API for f_append_byte()
+/*  API for data_block_append_byte()
 	purpose: Appends a byte to the end of a data block
 	parameters: [struct data_block* dbp] [char* byte]
 	input preconditions: The data block must be initialized. The data block must not be filled.
 	output/postconditions: [int] Return number of bytes appended (1 or 0).
-	usage: int f_append_byte(struct data_block* dbp, char* byte)
+	usage: int data_block_append_byte(struct data_block* dbp, char* byte)
 	Principal designer: daleong
 	Status: Designed, documented, implemented
 */
@@ -33,7 +33,7 @@ struct data_block* init_data_block() {
        return dbp;
 }
 
-int f_append_byte(struct data_block* db, char* byte) {
+int data_block_append_byte(struct data_block* db, char* byte) {
 	int i;
 	for( i = 0; i < MAX_BYTES; i++)
 	if( db->data[i] != NULL ) {

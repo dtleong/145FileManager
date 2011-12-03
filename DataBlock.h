@@ -2,4 +2,4 @@
 
 struct data_block* init_data_block();
 
-int f_append_byte(struct data_block* db, char* byte);
+int data_block_append_byte(struct data_block* db, char* byte);
