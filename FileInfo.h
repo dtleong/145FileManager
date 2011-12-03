@@ -30,7 +30,7 @@ void  modify_file_info_time();
         output/postconditions: [int] Return number of bytes appended (1 or 0).
         usage: int file_info_append_byte(struct file_info* fi, char* byte)
         Principal designer: mvigil
-        Status: Designed, documented
+        Status: Designed, documented, implemented
 */
 int file_info_append_byte(struct file_info* fi, char* byte);
 
