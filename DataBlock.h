@@ -1,3 +1,3 @@
 #define MAX_BYTES 128
 
-void initDataBlock();
+struct data_block* init_data_block();
