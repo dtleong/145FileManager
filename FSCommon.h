@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #define MAX_BYTES 128
@@ -33,3 +35,5 @@ struct file_directory {
         struct file_info* file_table[MAX_FILES];
 };
 
+
+char * itoa(int i);

@@ -50,7 +50,7 @@ f_open (struct file_directory *fd, char *filename)
 /* Create a new file */
   int f_create (struct file_directory *fd, char *filename)
   {
-    struct file_info *fi = file_info_init (filename);
+    struct file_info *fi = init_file_info (filename);
 
     int i;
     for (i = 0; i < MAX_FILES; i++)
@@ -82,7 +82,7 @@ f_open (struct file_directory *fd, char *filename)
   int f_append_string (struct file_directory *fd, int file_handle,
 		       char *string)
   {
-    file_info_append (fd->file_table, string);
+    file_info_append_byte (fd->file_table, string);
   }
 
 /* list files */
@@ -92,13 +92,14 @@ f_open (struct file_directory *fd, char *filename)
     int i;
     for (i = 0; i < MAX_FILES; i++)
       {
+	printf("listing file %d\n",i);
 	if (fd->file_table[i] != NULL)
 	  {
 	    struct tm *created;
 	    struct tm *modified;
-
-	    created = localtime (&fd->file_table[i]->created);
-	    modified = localtime (&fd->file_table[i]->last_modified);
+            printf("i = %d\n");
+	    created = localtime (fd->file_table[i]->created);
+	    modified = localtime (fd->file_table[i]->last_modified);
 
 	    printf ("%s :: %i %i/%i/%i %i:%i:%i :: %i %i/%i/%i %i:%i:%i\n",
 		    fd->file_table[i]->file_name, created->tm_wday,
@@ -127,8 +128,8 @@ f_open (struct file_directory *fd, char *filename)
 		struct tm *created;
 		struct tm *modified;
 
-		created = localtime (&fd->file_table[i]->created);
-		modified = localtime (&fd->file_table[i]->last_modified);
+		created = localtime (fd->file_table[i]->created);
+		modified = localtime (fd->file_table[i]->last_modified);
 
 		printf
 		  ("%s :: %i %i/%i/%i %i:%i:%i :: %i %i/%i/%i %i:%i:%i\n",

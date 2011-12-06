@@ -1,17 +1,19 @@
-all: disk.o DataBlock.o FCB.o FileDirectory.o FileInfo.o FSHarness.o
-	cc disk.o DataBlock.o FCB.o FileDirectory.o FileInfo.o FSHarness.o -o FS.bin
+all: disk.o DataBlock.o FCB.o FileDirectory.o FileInfo.o FSHarness.o FSCommon.o
+	cc disk.o DataBlock.o FCB.o FileDirectory.o FileInfo.o FSHarness.o FSCommon.o -g -lm -o FS.bin
 clean: 
 	rm *.o 2>/dev/null
 project2: disk.o 
 disk.o: disk.c disk.h
-	cc -c disk.c
+	cc -g -c disk.c
 DataBlock.o: DataBlock.c DataBlock.h FSCommon.h
-	cc -c DataBlock.c
+	cc -g -c DataBlock.c
 FCB.o: FCB.c FCB.h DataBlock.h FSCommon.h
-	cc -c FCB.c
+	cc -g -c FCB.c
 FileDirectory.o: FileDirectory.c FileDirectory.h FSCommon.h
-	cc -c FileDirectory.c
+	cc -g -c FileDirectory.c
 FileInfo.o: FileInfo.c FileInfo.h FSCommon.h
-	cc -c FileInfo.c
+	cc -g -c FileInfo.c
 FSHarness.o: FSHarness.c FSCommon.h
-	cc -c FSHarness.c
+	cc -g -c FSHarness.c
+FSCommon.o: FSCommon.c FSCommon.h
+	cc -g -c FSCommon.c
