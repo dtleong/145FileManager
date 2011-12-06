@@ -10,6 +10,8 @@ int main() {
 	int testfiles = 10;
 	int handle[20];
 	int i,j;
+	char value[NAME_SIZE];
+
 	/* Initialize array with NULL values */
 	for (i = 0; i < 20; i++) {
 		handle[i] = -1;

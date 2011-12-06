@@ -28,6 +28,7 @@ struct file_info {
 
 /* A file_directory struct definition */
 struct file_directory {
+// Should name have space allocated to it?
         char* name;
         struct file_info* file_table[MAX_FILES];
 };
