@@ -25,6 +25,7 @@ int f_mk_fs (struct file_directory *fd, char *filename)
 int f_open (struct file_directory *fd, char *filename)
 {
 /* Open a file named filename */
+
 }
 
 /* Close a file */
@@ -36,7 +37,17 @@ int f_close (struct file_directory *fd, char *filename)
 /* Create a new file */
 int f_create (struct file_directory *fd, char *filename)
 {
+	struct file_info* fi = file_info_init(filename);
+	
+	int i;
+	for(i=0; i<MAX_FILES; i++) {
+		if (fd->file_table[i] == NULL) {
+			fd->file_table[i] = fi;
+			return 1;
+		}
+	}
 
+	return 0;
 }
 
 /* Delete a file */
