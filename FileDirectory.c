@@ -25,7 +25,11 @@ int f_mk_fs (struct file_directory *fd, char *filename)
 int f_open (struct file_directory *fd, char *filename)
 {
 /* Open a file named filename */
-
+	int i;
+	for(i=0; i<MAX_FILES; i++)
+#check  file_info->name against *filename
+#return index (file handle) if found
+else return -1
 }
 
 /* Close a file */
