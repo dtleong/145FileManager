@@ -33,6 +33,7 @@ struct file_directory {
 // Should name have space allocated to it?
         char* name;
         struct file_info* file_table[MAX_FILES];
+	int open_file_table[MAX_FILES];
 };
 
 

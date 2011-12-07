@@ -6,8 +6,9 @@
         input preconditions: NONE
         output/postconditions: [struct file_directpry* fd] A pointer to the initialized file_directory is returned.
 	                       It now has a name assigned to it and has the content's of it's file_info array nullified.
+				It also has an empty open file table.
         usage: struct file_directory* f_dir_init(char* dir_name
-        Principal designer: mvigil
+        Principal designer: mvigil, daleong
         Status: Designed, documented, implemented
 */
 struct file_directory* f_dir_init(char* dir_name);
@@ -16,10 +17,10 @@ struct file_directory* f_dir_init(char* dir_name);
         purpose: Open a file in a directory
         parameters: [struct file_directory* fd] [char* filename]
         input preconditions: File has been created in the directory. Pointer to directory is null.
-        output/postconditions: [int file_handle] A file handle is returned. If the file cannot be opened, return -1.
+        output/postconditions: [int file_handle] A file handle is returned and logged in the open file table. If the file is already in the open file table, the file handle is returned. If the file cannot be opened, return -1.
         usage: int f_open(struct file_directory* fd, char* filename)
-        Principal designer: mvigil
-        Status: Designed, documented
+        Principal designer: mvigil, daleong
+        Status: Designed, documented, implemented
 */
 int f_open(struct file_directory* fd, char* filename);
 
@@ -29,8 +30,8 @@ int f_open(struct file_directory* fd, char* filename);
         input preconditions: File has been created in the directory. Pointer to directory is not null.
 	output/postconditions: [int status] A status is returned regarding the success of closing the file. 1 is success, 0 is failure.
         usage: int f_close(struct file_directory* fd, char* filename)
-        Principal designer: mvigil
-        Status: Designed, documented
+        Principal designer: mvigil, daleong
+        Status: Designed, documented, implemented
 */
 int f_close(struct file_directory* fd, char* filename);
 

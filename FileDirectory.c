@@ -12,7 +12,11 @@ f_dir_init (char *dir_name)
   for (i = 0; i < MAX_FILES; i++)
     file_table[i] = NULL;
 
-  struct file_directory fd = { dir_name, file_table };
+  int open_file_table[MAX_FILES];
+  for ( i = 0; i < MAX_FILES; i++)
+	open_file_table[i] = -1; 
+
+  struct file_directory fd = { dir_name, file_table, open_file_table };
   fdp = &fd;
   return fdp;
 }
@@ -23,27 +27,59 @@ f_mk_fs (struct file_directory *fd, char *filename)
 /* This is where fcbs are initialized */
 }
 
+
 /* Open a file */
 int
 f_open (struct file_directory *fd, char *filename)
 {
 /* Open a file named filename */
 	int i;
+	int file_handle;
 	for (i = 0; i < MAX_FILES; i++) {
 		// check  file_info->name against *filename
 		// return index (file handle) if found
 		if (strcmp (filename, fd->file_table[i]->file_name) == 0) {
-			// here is where we would add the file number to the open file table.
-			return i;
+			file_handle = i;
+			break;
 		} else {
 			return -1;
 		}
 	}
+	int first_available = -1;
+	for (i = 0; i < MAX_FILES; i++) {
+		if (fd->open_file_table[i] == -1 && first_available != -1) {
+			first_available = i;
+		}
+	        if (fd->open_file_table[i] == file_handle) {
+			return file_handle;
+                } else {
+                        continue;
+                }
+        }
+	fd->open_file_table[first_available] = file_handle;
+	return file_handle;
 }
 
 /* Close a file */
-  int f_close (struct file_directory *fd, char *filename)
-  {
+  int f_close (struct file_directory *fd, char *filename) {
+	int i;
+	int file_handle;
+	for (i = 0; i < MAX_FILES; i++) {
+		if (strcmp (filename, fd->file_table[i]->file_name) == 0) {
+			file_handle = i;
+			break;
+		} else {
+			return -1;
+		}
+	}
+	for (i = 0; i < MAX_FILES; i++) {
+		if (fd->open_file_table[i] == file_handle) {
+			fd->open_file_table[i];
+			return 1;
+		} else {
+			continue;
+		}
+	} 
 
   }
 
