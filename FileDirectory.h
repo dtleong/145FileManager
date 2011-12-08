@@ -108,6 +108,6 @@ void f_ls1(struct file_directory* fd,char* fname);
 	output/postconditions: side effect - output to screen of 'ls' info
 	usage: void f_ls(struct file_directory* fd)
 	Principal designer: daleong
-	Status: Designed, documented
+	Status: Designed, documented, implemented
 */
 void f_lsof(struct file_directory* fd); 
