@@ -180,3 +180,34 @@ f_open (struct file_directory *fd, char *filename)
       }
     return;
   }
+
+/* list open files */
+  void f_lsof (struct file_directory *fd)
+  {
+    printf ("FILE_NAME :: CREATED :: LAST_MODIFIED\n");
+    int i;
+    int file_handle;
+    for (i = 0; i < MAX_FILES; i++)
+      {
+        printf("listing file %d\n",i);
+        if (fd->open_file_table[i] != NULL)
+          {
+            file_handle = fd->open_file_table[i];
+            struct tm *created;
+            struct tm *modified;
+            printf("i = %d\n");
+            created = localtime (fd->file_table[file_handle]->created);
+            modified = localtime (fd->file_table[file_handle]->last_modified);
+
+            printf ("%s :: %i %i/%i/%i %i:%i:%i :: %i %i/%i/%i %i:%i:%i\n",
+                    fd->file_table[file_handle]->file_name, created->tm_wday,
+                    created->tm_mday, created->tm_mon, created->tm_year,
+                    created->tm_hour, created->tm_min, created->tm_sec,
+                    modified->tm_wday, modified->tm_mday, modified->tm_mon,
+                    modified->tm_year, modified->tm_hour, modified->tm_min,
+                    modified->tm_sec);
+          }
+      }
+    return;
+  }
+
