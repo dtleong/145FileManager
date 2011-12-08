@@ -1,6 +1,6 @@
 #include "FileInfo.h"
 #include <string.h>
-
+#include <stdlib.h>
 
 /*  API for init_file_info()
         purpose: Create a new file_info
@@ -59,8 +59,15 @@ void  modify_file_info_time(struct file_info* fi) {
         Status: Designed, documented
 */
 int file_info_append_byte(struct file_info* fi, char* byte) {
-	
-		
 
+	if (fcb_append_byte(fi->fcb, byte) > 0){
+		modify_file_info_time(fi);
+		return 1;
+	}
+	return 0;
 }
 
+void delete_file_info(struct file_info* fi) {
+	delete_fcb(fi);
+	fi->file_name = NULL;
+}

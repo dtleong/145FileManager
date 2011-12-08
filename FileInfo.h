@@ -34,3 +34,15 @@ void  modify_file_info_time();
 */
 int file_info_append_byte(struct file_info* fi, char* byte);
 
+/* API for delete_file_info()
+        purpose: Garbage collection for file_info
+        parameters: [struct file_info* fi] 
+        input preconditions: The file must be initialized.
+        output/postconditions: [void]
+        usage: data delete_file_info(struct file_info* fi)
+        Principal designer: mvigil
+        Status: Designed, documented, implemented
+*/
+void delete_file_info(struct file_info* fi);
+
+

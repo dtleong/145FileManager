@@ -38,3 +38,22 @@ int fcb_append_byte(struct file_control_block* fcbp, char* byte) {
 		} 
 	return 0;
 }
+
+/*  API for void delete_fcb()
+        purpose: Call delet on each of the data_blocks then nullify the pointers to those blocks
+        parameters: [struct file_control_block* fcbp]
+        input preconditions: The file control block must be initialized.
+        output/postconditions: [void] The pointers to the data_blocks are nullified.
+        Principal designer: mvigil
+        Status: designed, documented, implemented
+*/
+void delete_fcb(struct file_control_block* fcb) {
+	int i;
+	for( i=0; i <MAX_BLOCKS; i++ ) {
+		delete_data_block(fcb->db[i]);
+		fcb->db[i] = NULL;
+	}
+	return;
+}
+
+
