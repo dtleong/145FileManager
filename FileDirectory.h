@@ -48,14 +48,14 @@ int f_create(struct file_directory* fd, char* filename);
 
 /*  API for f_delete()
         purpose: Delete a file in a directory. Nullify the data_blocks it points to.
-        parameters: [struct file_directory* fd] [char* filename]
+        parameters: [struct file_directory* fd] [int fh]
         input preconditions: File has been deleted in the directory
-        output/postconditions: [int status] A status is returned regarding the success of deleting the file. 1 is success, 0 is failure.
-        usage: int f_delete(struct file_directory* fd, char* filename)
+        output/postconditions: [void] A status is returned regarding the success of deleting the file. 1 is success, 0 is failure.
+        usage: int f_delete(struct file_directory* fd, int fh)
         Principal designer: mvigil
-        Status: Designed, documented
+        Status: Designed, documented, implemented
 */
-int f_delete(struct file_directory* fd, char* filename);
+void f_delete(struct file_directory* fd, int fh);
 
 /*  API for f_append_byte()
         purpose: Append a byte of data to the end of a file in a directory.

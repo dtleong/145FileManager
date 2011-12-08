@@ -102,9 +102,9 @@ f_open (struct file_directory *fd, char *filename)
   }
 
 /* Delete a file */
-  int f_delete (struct file_directory *fd, char *filename)
+  void f_delete (struct file_directory* fd, int fh)
   {
-
+	delete_file_info(fd->file_table[fh]);
   }
 
 /* Append a byte to the end of a file */
