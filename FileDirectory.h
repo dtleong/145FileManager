@@ -42,9 +42,21 @@ int f_close(struct file_directory* fd, char* filename);
         output/postconditions: [int status] A status is returned regarding the success of creation of the file. 1 is success, 0 is failure.
         usage: int f_create(struct file_directory* fd, char* filename)
         Principal designer: mvigil
-        Status: Designed, documented
+        Status: Designed, documented, implemented
 */
 int f_create(struct file_directory* fd, char* filename);
+
+/*  API for f_write()
+        purpose: Write what is in a file to disk
+        parameters: [struct file_directory* fd] [int fh]
+        input preconditions: Pointer to directory is not NULL and fh is an int between 0 and MAX_FILES.
+        output/postconditions: [int status] A status is returned regarding the success of writing to disk. > 1 is success, 0 is failure.
+        usage: int f_write(struct file_directory* fd, int fh)
+        Principal designer: mvigil
+        Status: Designed, documented, implemented
+*/
+int f_write(struct file_directory* fd, int fh);
+
 
 /*  API for f_delete()
         purpose: Delete a file in a directory. Nullify the data_blocks it points to.

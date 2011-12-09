@@ -26,22 +26,31 @@ int main() {
 		
 		/* Will need error handling here */
 		handle[i] = f_create(fdir, value);
+		if (handle[i] == -1) {
+			printf("Error creating file.");
+		}
+		printf("handle[%i] = %i\n", i, handle[i]);
 		printf("creating file %d is %s\n",i,value);
 		
 		/* File has 1-4 DataBlocks associated with it */
-		for ( j = 0; j < (128 * (4 * rand() % 1)); j++) {
-			f_append_byte(fdir, handle[i], i);
+		for ( j = 0; j < 10/*(128 * (4 * rand() % 1))*/; j++) {
+			printf("before f_append_byte\n");
+			if(handle[i] != -1) {
+				printf("Valid handle: append byte.\n");
+				//f_append_byte(fdir, handle[i], i);
+				//printf("after f_append_byte");
+			}
 		}
 	}
 	
 	/* Delete some files */
-	f_delete(fdir,handle[4]);
-	f_delete(fdir,handle[7]);
-	f_append_string(fdir,handle[5], "hello, world!\n");
-        printf("all creation done\n");	
-	f_ls(fdir);
-        printf("ls on fdir\n");	
-	f_ls1(fdir,"foo4");
-        printf("ls on foo4\n");	
-	f_ls1(fdir,"foo3"); /* Should return "File not found." */
+	//f_delete(fdir,handle[4]);
+	//f_delete(fdir,handle[7]);
+	//f_append_string(fdir,handle[5], "hello, world!\n");
+        //printf("all creation done\n");	
+	//f_ls(fdir);
+        //printf("ls on fdir\n");	
+	//f_ls1(fdir,"foo4");
+        //printf("ls on foo4\n");	
+	//f_ls1(fdir,"foo3"); /* Should return "File not found." */
 }

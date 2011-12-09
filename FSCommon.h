@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "disk.h"
 
 #define MAX_BYTES 128
 #define MAX_BLOCKS 4

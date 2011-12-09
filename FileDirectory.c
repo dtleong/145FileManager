@@ -94,17 +94,20 @@ f_open (struct file_directory *fd, char *filename)
 	if (fd->file_table[i] == NULL)
 	  {
 	    fd->file_table[i] = fi;
-	    return 1;
+	    return i;
 	  }
       }
 
-    return 0;
+    return -1;
   }
 
 /* Delete a file */
   void f_delete (struct file_directory* fd, int fh)
   {
+	printf("This is before f_del");
 	delete_file_info(fd->file_table[fh]);
+	printf("This is after f_del");
+
   }
 
 /* Append a byte to the end of a file */
