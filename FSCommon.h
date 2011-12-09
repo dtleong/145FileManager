@@ -2,12 +2,28 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <iostream>
 #include "disk.h"
 
 #define MAX_BYTES 128
 #define MAX_BLOCKS 4
 #define NAME_SIZE 6
 #define MAX_FILES 50
+
+class Filemanager {
+	struct file_directory_table[MAX_BLOCKS];
+
+	public:
+		int fMkdir(char *name);
+		int fCd(char *name);
+};	
+
+FileManager::FileManager (struct file_directory_table[MAX_BLOCKS]) {
+	int i;
+	for ( i = 0; i < MAX_BLOCKS; i++ ) {
+		file_directory_table[i] = NULL;
+	}
+}
 
 /* A data_block struct definition */
 struct data_block {
@@ -39,3 +55,5 @@ struct file_directory {
 
 
 char * itoa(int i);
+
+
