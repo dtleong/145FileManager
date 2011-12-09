@@ -41,7 +41,7 @@ f_open (struct file_directory *fd, char *filename)
 		if (strcmp (filename, fd->file_table[i]->file_name) == 0) {
 			file_handle = i;
 			break;
-		} else {
+		} else if (strcmp (filename, fd->file_table[i]->file_name) == 0 && i == MAX_FILES){
 			return -1;
 		}
 	}
@@ -97,17 +97,17 @@ f_open (struct file_directory *fd, char *filename)
 	    return i;
 	  }
       }
-
     return -1;
   }
 
 /* Delete a file */
   void f_delete (struct file_directory* fd, int fh)
   {
-	printf("This is before f_del");
-	delete_file_info(fd->file_table[fh]);
-	printf("This is after f_del");
-
+	if (fd->file_table[fh] != NULL)	{
+		delete_file_info(fd->file_table[fh]);
+	} else {
+		return;
+	}
   }
 
 /* Append a byte to the end of a file */

@@ -26,11 +26,13 @@ struct data_block* init_data_block() {
        char* data[MAX_BYTES];
        int i;
 
-       for( i = 0; i < MAX_BYTES; i++) data[i] = NULL;
-       struct data_block db = {data};
-       struct data_block* dbp;
-       dbp = &db;
-       return dbp;
+       for( i = 0; i < MAX_BYTES; i++) {
+		data[i] = NULL;
+	       struct data_block db = {data};
+	       struct data_block* dbp;
+	       dbp = &db;
+	       return dbp;
+	}
 }
 
 int data_block_append_byte(struct data_block* db, char* byte) {
@@ -57,7 +59,11 @@ int data_block_append_byte(struct data_block* db, char* byte) {
 void delete_data_block(struct data_block* db) {
 	int i;
 	for(i=0; i<MAX_BYTES; i++) {
-		db->data[i] = NULL;
+		if (db->data[i] != NULL) {			
+			db->data[i] = NULL;
+		} else {
+			return;
+		}
 	}
 	return;
 }

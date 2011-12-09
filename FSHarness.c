@@ -29,22 +29,24 @@ int main() {
 		if (handle[i] == -1) {
 			printf("Error creating file.");
 		}
-		printf("handle[%i] = %i\n", i, handle[i]);
-		printf("creating file %d is %s\n",i,value);
 		
+		printf("creating file %d is %s\n",i,value);
+		printf("handle[%i] = %i\n", i, handle[i]);
 		/* File has 1-4 DataBlocks associated with it */
-		for ( j = 0; j < 10/*(128 * (4 * rand() % 1))*/; j++) {
-			printf("before f_append_byte\n");
-			if(handle[i] != -1) {
-				printf("Valid handle: append byte.\n");
+		//for ( j = 0; j < 10/*(128 * (4 * rand() % 1))*/; j++) {
+			//printf("before f_append_byte\n");
+			//if(handle[i] != -1) {
+				//printf("Valid handle: append byte.\n");
 				//f_append_byte(fdir, handle[i], i);
 				//printf("after f_append_byte");
-			}
-		}
+		//}
 	}
+
 	
 	/* Delete some files */
-	//f_delete(fdir,handle[4]);
+	printf("deleting handle[%i] = %i\n", i = 2, handle[2]);	
+	f_delete(fdir, handle[2]);
+	printf("delete sucess]n");
 	//f_delete(fdir,handle[7]);
 	//f_append_string(fdir,handle[5], "hello, world!\n");
         //printf("all creation done\n");	

@@ -68,6 +68,10 @@ int file_info_append_byte(struct file_info* fi, char* byte) {
 }
 
 void delete_file_info(struct file_info* fi) {
-	delete_fcb(fi->fcb);
-	fi->file_name = NULL;
+	if (fi->fcb != NULL) {	
+		delete_fcb(fi->fcb);
+		fi->file_name = NULL;
+	} else {
+		return;
+	}
 }
